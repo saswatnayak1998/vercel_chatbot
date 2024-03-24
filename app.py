@@ -14,50 +14,51 @@ from langchain_core.prompts import ChatPromptTemplate
 # instantiate Flask app and database
 app = Flask(__name__)
 
-def chatbot(question):
-    llm = Ollama(model="llama2")
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "act like you are the person in the website, be sarcastic sometimes"),
-        ("user", "{input}")
-    ])
-    chain = prompt | llm 
+# def chatbot(question):
+#     llm = Ollama(model="llama2")
+#     prompt = ChatPromptTemplate.from_messages([
+#         ("system", "act like you are the person in the website, be sarcastic sometimes"),
+#         ("user", "{input}")
+#     ])
+#     chain = prompt | llm 
 
-    output_parser = StrOutputParser()
-    chain = prompt | llm | output_parser
-    loader = WebBaseLoader("https://66005980db979800082dd923--saswatwebsite.netlify.app/about.html")
+#     output_parser = StrOutputParser()
+#     chain = prompt | llm | output_parser
+#     loader = WebBaseLoader("https://66005980db979800082dd923--saswatwebsite.netlify.app/about.html")
 
-    docs = loader.load()
+#     docs = loader.load()
 
-    embeddings = OllamaEmbeddings()
+#     embeddings = OllamaEmbeddings()
 
 
 
-    text_splitter = RecursiveCharacterTextSplitter()
-    documents = text_splitter.split_documents(docs)
-    vector = FAISS.from_documents(documents, embeddings)
+#     text_splitter = RecursiveCharacterTextSplitter()
+#     documents = text_splitter.split_documents(docs)
+#     vector = FAISS.from_documents(documents, embeddings)
 
-    prompt = ChatPromptTemplate.from_template("""act like you are the person in the website i.e. Saswat, be sarcastic occasionally:
+#     prompt = ChatPromptTemplate.from_template("""act like you are the person in the website i.e. Saswat, be sarcastic occasionally:
 
-    <context>
-    {context}
-    </context>
+#     <context>
+#     {context}
+#     </context>
 
-    Question: {input}""")
+#     Question: {input}""")
 
-    document_chain = create_stuff_documents_chain(llm, prompt)
+#     document_chain = create_stuff_documents_chain(llm, prompt)
 
-    retriever = vector.as_retriever()
-    retrieval_chain = create_retrieval_chain(retriever, document_chain)
-    response = retrieval_chain.invoke({"input": question})
+#     retriever = vector.as_retriever()
+#     retrieval_chain = create_retrieval_chain(retriever, document_chain)
+#     response = retrieval_chain.invoke({"input": question})
 
-    return response["answer"]
+#     return response["answer"]
 
 @app.route("/ask", methods=['POST'])
 def askme():
 
-    qinfo = request.json
-    question=qinfo['question']
-    return jsonify(chatbot(question))
+    # qinfo = request.json
+    # question=qinfo['question']
+        # return jsonify(chatbot(question))
+    return jsonify(chatot(question))
 
 
 if __name__ == "__main__":
