@@ -23,6 +23,7 @@ fastjsonschema==2.19.1
 Flask==3.0.2
 frozenlist==1.4.1
 greenlet==3.0.3
+gunicorn==21.2.0
 idna==3.6
 importlib_metadata==7.1.0
 ipython==8.12.3
