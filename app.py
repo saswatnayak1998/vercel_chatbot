@@ -55,10 +55,10 @@ app = Flask(__name__)
 @app.route("/ask", methods=['POST'])
 def askme():
 
-    # qinfo = request.json
-    # question=qinfo['question']
+    qinfo = request.json
+    question = qinfo['question']
         # return jsonify(chatbot(question))
-    return jsonify(chatot(question))
+    return jsonify(question)
 
 
 if __name__ == "__main__":
