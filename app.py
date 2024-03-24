@@ -55,13 +55,8 @@ def chatbot(question):
 @app.route("/ask", methods=['POST'])
 def askme():
 
-    # access data submitted with HTTP request
     qinfo = request.json
-
     question=qinfo['question']
-
-
-
     return jsonify(chatbot(question))
 
 
