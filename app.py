@@ -10,7 +10,6 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
-import Ollama
 
 # instantiate Flask app and database
 app = Flask(__name__)
