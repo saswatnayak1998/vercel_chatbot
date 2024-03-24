@@ -10,12 +10,14 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
+import Ollama
 
 # instantiate Flask app and database
 app = Flask(__name__)
 
 def chatbot(question):
     llm = Ollama(model="llama2")
+
     prompt = ChatPromptTemplate.from_messages([
         ("system", "act like you are the person in the website, be sarcastic sometimes"),
         ("user", "{input}")
